@@ -50,11 +50,11 @@ const ModalUser = (props) => {
 
   const getGroups = async () => {
     let res = await fetchGroups();
-    if (res && res.data.DT && +res.data.EC === 0) {
-      setGroups(res.data.DT);
+    if (res && res.DT && +res.EC === 0) {
+      setGroups(res.DT);
       setUserData((prevData) => ({
         ...prevData,
-        groupId: res.data.DT[0].id,
+        groupId: res.DT[0].id,
       }));
     }
   };
@@ -70,8 +70,8 @@ const ModalUser = (props) => {
   const handleSave = async () => {
     if (validateInputUser()) {
       let res = await createUser(userData);
-      if (res && +res.data.EC === 0) {
-        toast.success(res.data.EM);
+      if (res && +res.EC === 0) {
+        toast.success(res.EM);
         props.onHide();
       }
     }
@@ -102,8 +102,8 @@ const ModalUser = (props) => {
   const handleEdit = async () => {
     let res = await editUser(userData);
     console.log("check ressssss  >> ,<<< ", res);
-    if (res && +res.data.EC === 0) {
-      toast.success(res.data.EM);
+    if (res && +res.EC === 0) {
+      toast.success(res.EM);
       props.onHide();
     }
   };

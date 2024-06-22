@@ -1,16 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./Login.scss";
 import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { loginUser } from "../../services/userService";
+import { UserContext } from "../../context/UserContext";
 const Login = () => {
   const [valueLogin, setValueLogin] = useState("");
   const [password, setPassWord] = useState("");
+
+  const { login } = useContext(UserContext);
+
   let history = useHistory();
   useEffect(() => {
     let session = sessionStorage.getItem("account");
     if (session) {
-      history.push("/");
+      //history.push("/");
     }
   });
   const defaultObj = {
@@ -30,17 +34,25 @@ const Login = () => {
       return;
     }
     let res = await loginUser(valueLogin, password);
-    if (+res.data.EC === 0) {
+    if (+res.EC === 0) {
+      let email = res.DT.email;
+      let username = res.DT.username;
+      let groupWithRole = res.DT.groupWithRole;
       let data = {
         isAuthenticated: true,
-        token: "fake token",
+        token: res.DT.access_token,
+        account: {
+          groupWithRole,
+          email,
+          username,
+        },
       };
       sessionStorage.setItem("account", JSON.stringify(data));
+      login(data);
       history.push("/users");
-      window.location.reload();
-      toast.success(res.data.EM);
+      toast.success(res.EM);
     } else {
-      toast.error(res.data.EM);
+      toast.error(res.EM);
       return;
     }
   };

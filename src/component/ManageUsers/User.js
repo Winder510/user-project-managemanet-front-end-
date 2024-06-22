@@ -22,9 +22,9 @@ const Users = () => {
   const fetchUsers = async () => {
     let res = await fetchAllUser(currentPage, currentLimit);
     console.log("res", res);
-    if (res && res.data.DT && +res.data.EC === 0) {
-      setTotalPages(res.data.DT.totalPages);
-      setListUser(res.data.DT.data);
+    if (res && res.DT && +res.EC === 0) {
+      setTotalPages(res.DT.totalPages);
+      setListUser(res.DT.data);
     }
   };
   const handlePageClick = async (event) => {
@@ -35,11 +35,11 @@ const Users = () => {
   const handleDeleteUser = async () => {
     let res = await deleteUser(dataModal.id);
     console.log(res);
-    if (res && +res.data.EC === 0) {
-      toast.success(res.data.EM);
+    if (res && +res.EC === 0) {
+      toast.success(res.EM);
       fetchUsers();
     } else {
-      toast.error(res.data.EM);
+      toast.error(res.EM);
     }
     setIsShowModalDelete(false);
   };

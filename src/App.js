@@ -11,7 +11,6 @@ const App = (props) => {
 
   useEffect(() => {
     let session = sessionStorage.getItem("account");
-    console.log("session", JSON.stringify(session));
     if (session) {
       setAccount(JSON.parse(session));
     }

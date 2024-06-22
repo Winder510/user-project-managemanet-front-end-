@@ -8,7 +8,7 @@ const AppRoute = () => {
     <>
       <Switch>
         <PrivateRoute path="/users" component={Users} />
-        <PrivateRoute path="/project" component={Users} />
+
         <Route path="/about">about</Route>
         <Route path="/login">
           <Login />
