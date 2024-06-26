@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import React, { useContext, useEffect, useState } from "react";
-import Navigation from "./component/Navigation/Navigation";
+import NavHeader from "./component/Navigation/NavHeader";
 import { ToastContainer, toast } from "react-toastify";
 import _ from "lodash";
 import "react-toastify/dist/ReactToastify.css";
@@ -31,7 +31,7 @@ const App = (props) => {
         ) : (
           <>
             <div className="app-header">
-              <Navigation />
+              <NavHeader />
             </div>
             <div className="app-container">
               <AppRoute />

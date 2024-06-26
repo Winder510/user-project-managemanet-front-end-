@@ -4,22 +4,33 @@ body {
 }
 
 .topnav {
-  overflow: hidden;
-  background-color: #333;
-  a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    &:hover {
-      background-color: #ddd;
+  background-color: #0b0e24;
+
+  .dropdown-menu {
+    a {
+      color: black !important;
+    }
+  }
+  .navbar-nav {
+    .nav-link {
       color: black;
     }
-    &.active {
-      background-color: #04aa6d;
-      color: white;
+  }
+  .navbar-light {
+    .navbar-brand {
+      color: black;
+    }
+    .navbar-nav {
+      .nav-link {
+        text-align: center;
+        padding: 14px 16px;
+        &:hover {
+          color: #0866ff;
+        }
+        &.active {
+          color: #0866ff;
+        }
+      }
     }
   }
 }

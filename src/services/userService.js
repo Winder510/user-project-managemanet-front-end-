@@ -34,6 +34,9 @@ const editUser = async (userData) => {
 const getUserAccount = async () => {
   return axios.get("/api/v1/account");
 };
+const logoutUser = async () => {
+  return axios.post("/api/v1/logout");
+};
 export {
   registerNewUser,
   loginUser,
@@ -43,4 +46,5 @@ export {
   createUser,
   editUser,
   getUserAccount,
+  logoutUser,
 };
