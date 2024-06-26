@@ -1,31 +1,44 @@
 import "./App.css";
 import { BrowserRouter as Router } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navigation from "./component/Navigation/Navigation";
 import { ToastContainer, toast } from "react-toastify";
 import _ from "lodash";
 import "react-toastify/dist/ReactToastify.css";
 import AppRoute from "./routes/AppRoute";
+import { Audio } from "react-loader-spinner";
+import { UserContext } from "./context/UserContext";
 const App = (props) => {
-  const [account, setAccount] = useState({});
-
-  useEffect(() => {
-    let session = sessionStorage.getItem("account");
-    if (session) {
-      setAccount(JSON.parse(session));
-    }
-  }, []);
+  const { user } = useContext(UserContext);
   return (
     <>
       <Router>
-        <div className="app-header">
-          {account && !_.isEmpty(account) && account.isAuthenticated && (
-            <Navigation />
-          )}
-        </div>
-        <div className="app-container">
-          <AppRoute />
-        </div>
+        {user && user.isLoading ? (
+          <>
+            <div className="loading-container">
+              <Audio
+                height="80"
+                width="80"
+                radius="9"
+                color="#0866ff"
+                ariaLabel="loading"
+                wrapperStyle
+                wrapperClass
+              />
+              <div>Loading...</div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="app-header">
+              <Navigation />
+            </div>
+            <div className="app-container">
+              <AppRoute />
+            </div>
+          </>
+        )}
+
         <ToastContainer
           position="top-right"
           autoClose={1000}

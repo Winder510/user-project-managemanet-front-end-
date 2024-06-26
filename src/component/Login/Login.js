@@ -11,12 +11,7 @@ const Login = () => {
   const { login } = useContext(UserContext);
 
   let history = useHistory();
-  useEffect(() => {
-    let session = sessionStorage.getItem("account");
-    if (session) {
-      //history.push("/");
-    }
-  });
+
   const defaultObj = {
     isValidEmail: true,
     isValidPassword: true,
@@ -47,7 +42,7 @@ const Login = () => {
           username,
         },
       };
-      sessionStorage.setItem("account", JSON.stringify(data));
+      localStorage.setItem("jwt", res.DT.access_token);
       login(data);
       history.push("/users");
       toast.success(res.EM);

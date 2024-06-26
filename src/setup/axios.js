@@ -4,6 +4,9 @@ const instance = axios.create({
   baseURL: "http://localhost:3001",
 });
 instance.defaults.withCredentials = true;
+instance.defaults.headers.common[
+  "Authorization"
+] = `Bearer ${localStorage.getItem("jwt")}`;
 // Add a request interceptor
 instance.interceptors.request.use(
   function (config) {
@@ -29,7 +32,7 @@ instance.interceptors.response.use(
       // authentication (token related issues)
       case 401: {
         toast.error("Unauthorized");
-        return Promise.reject(err);
+        return err.response.data;
       }
 
       // forbidden (permission related issues)
