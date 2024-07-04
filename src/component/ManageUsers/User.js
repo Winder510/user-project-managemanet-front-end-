@@ -59,14 +59,14 @@ const Users = () => {
   };
   return (
     <>
-      <div className="manage-users-container container">
+      <div className="manage-users-container container d-flex flex-column gap-3">
         <div className="users-header">
           <div className="title">
-            <h2>Table users</h2>
+            <h2>Manage users</h2>
           </div>
           <div className="actions">
             <button
-              className="btn btn-success"
+              className="btn btn-success me-2"
               onClick={() => {
                 onHideModalUser();
                 setIsOnEdit(false);
