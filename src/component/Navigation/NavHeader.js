@@ -26,12 +26,6 @@ const NavHeader = (props) => {
       <>
         {
           <div className="topnav">
-            {/* <NavLink to="/" exact>
-              Home
-            </NavLink>
-            <NavLink to="/users">Users</NavLink>
-            <NavLink to="/project">Project</NavLink>
-            <NavLink to="/about">About</NavLink> */}
             <Navbar expand="lg" className="bg-light">
               <Container>
                 <Navbar.Brand href="#home">

@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./Role.scss";
 import _ from "lodash";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import { createRoles } from "../../services/roleService";
+import TableRole from "./TableRole";
 const Role = () => {
   const [listChilds, setListChilds] = useState({
     child1: { url: "", description: "" },
   });
+  const childRef = useRef();
   const [errors, setErrors] = useState({});
   const handleOnChangeInput = (name, value, key) => {
     let _listChilds = _.cloneDeep(listChilds);
@@ -51,6 +53,7 @@ const Role = () => {
       let response = await createRoles(data);
       if (response && +response.EC === 0) {
         toast.success(response.EM);
+        childRef.current.fetchListRoleAgain();
       }
     }
   };
@@ -131,6 +134,9 @@ const Role = () => {
             </button>
           </div>
         </div>
+        <hr />
+        <h4>Table role</h4>
+        <TableRole ref={childRef} />
       </div>
     </>
   );
