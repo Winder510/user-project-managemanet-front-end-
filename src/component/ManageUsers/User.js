@@ -21,7 +21,6 @@ const Users = () => {
   }, [currentPage]);
   const fetchUsers = async () => {
     let res = await fetchAllUser(currentPage, currentLimit);
-    console.log("res", res);
     if (res && res.DT && +res.EC === 0) {
       setTotalPages(res.DT.totalPages);
       setListUser(res.DT.data);

@@ -1,5 +1,5 @@
 import { useEffect, useState, forwardRef, useImperativeHandle } from "react";
-import { fetchAllRoles, deleteRole } from "../../services/roleService";
+import { fetchAllRolesPaginate, deleteRole } from "../../services/roleService";
 import ReactPaginate from "react-paginate";
 import { toast } from "react-toastify";
 const TableRole = forwardRef((props, ref) => {
@@ -17,7 +17,7 @@ const TableRole = forwardRef((props, ref) => {
   }));
 
   const handleFetchRoles = async () => {
-    let response = await fetchAllRoles(currentPage, currentLimit);
+    let response = await fetchAllRolesPaginate(currentPage, currentLimit);
     if (response && response.DT && +response.EC === 0) {
       let data = response.DT.data;
       setListRole(data);

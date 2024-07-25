@@ -1,7 +1,6 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 const ModalDelete = (props) => {
-  console.log("props", props);
   return (
     <div>
       <Modal
